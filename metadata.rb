@@ -1,0 +1,8 @@
+name 'pdsoe'
+maintainer 'Mike Butler'
+maintainer_email 'michael.butler@progress.com'
+license 'All Rights Reserved'
+description 'Installs/Configures pdsoe'
+version '0.1.0'
+chef_version '>= 16.0'
+depends 'chocolatey'
