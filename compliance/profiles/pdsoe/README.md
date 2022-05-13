@@ -1,3 +1,3 @@
-# Example InSpec Profile
+# Progress Developer Studio - OpenEdge Compliance Profile
 
-This example shows the implementation of an InSpec profile.
+> Validates that Progress Developer Studio for OpenEdge and it's dependencies are installed.

@@ -22,7 +22,7 @@ control 'OpenEdge 12.2 Install' do
   title 'OpenEdge 12.2 Should be Installed'
 
   describe package('OpenEdge 12.2 (64-bit)') do
-    it {should be_installed}
-    its('version') { should cmp > '12'}    
+    it { should be_installed }
+    its('version') { should cmp > '12' }
   end
 end
