@@ -42,5 +42,6 @@ windows_package 'OpenEdge 12.2 (64-bit)' do
   timeout 1800
 end
 
-# powershell command to execute
-# .\setup.exe -psc_s -psc_fl=c:\temp\pdsoe\response.ini -psc_f2=c:\temp\pdsoe\setup.log
+version = ::File.read('C:\Progress\OpenEdge\version').split[2]
+
+node.default['openedge']['version'] = version

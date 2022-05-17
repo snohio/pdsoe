@@ -25,4 +25,9 @@ control 'OpenEdge 12.2 Install' do
     it { should be_installed }
     its('version') { should cmp > '12' }
   end
+
+  describe file('c:\Progress\OpenEdge\version') do
+    its('content') { should include '12.2.9' }
+  end
+
 end
