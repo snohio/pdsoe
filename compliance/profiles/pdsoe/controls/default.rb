@@ -29,5 +29,4 @@ control 'OpenEdge 12.2 Install' do
   describe file('c:\Progress\OpenEdge\version') do
     its('content') { should include '12.2.9' }
   end
-
 end

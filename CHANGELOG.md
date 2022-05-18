@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the pdsoe cookbook.
 
+## 1.1.0
+
+- Update to separate install into its own recipe.
+- Initial Configuration for Upgrade Recipe - triggered by tags
+
 ## 1.0.0
 
 Release One for Portforio+ Demonstration
