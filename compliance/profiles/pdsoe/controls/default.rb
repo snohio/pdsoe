@@ -30,3 +30,17 @@ control 'OpenEdge 12.2 Install' do
     its('content') { should include '12.2.9' }
   end
 end
+
+control 'Windows Defender' do
+  impact 1.0
+  title 'Windows Defender should be enabled and configured properly'
+  
+  script = <<-EOH
+    $mppref = Get-MpPreference
+    $mppref.DisableRealtimeMonitoring
+  EOH
+
+  describe powershell(script) do
+    its('stdout') { should eq "False\r\n" }
+  end
+end
