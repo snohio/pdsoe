@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the pdsoe cookbook.
 
+## 1.3.0
+
+- Updated for Chef Client 18.4+ for the modifications for Chocolatey 2.0 and enhanced Chef Client chocolatey resources.
+- Added an Inspec check that the Defender Realtime Protection is back on.
+
 ## 1.2.0
 
 - Added a feature to disable and reenable Defender (will fail if not used - probably need guarded) around the install to improve install time

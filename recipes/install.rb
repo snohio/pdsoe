@@ -2,7 +2,14 @@
 # Recipe:: install
 # Copyright:: 2022, Mike Butler, All Rights Reserved.
 
-include_recipe 'chocolatey::default'
+if node['chef_packages']['chef']['version'] < '18.4.2'
+  include_recipe 'chocolatey::default'
+
+else
+  chocolatey_installer 'latest' do
+    action :install
+  end
+end
 
 windows_defender 'Defender Pause Realtime Protection' do
   realtime_protection false
