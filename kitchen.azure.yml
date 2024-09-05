@@ -1,0 +1,55 @@
+---
+driver:
+  name: azurerm
+  subscription_id: <%= ENV["AZURE_SUBSCRIPTION_ID"] %>
+  location: 'East US'
+  machine_size: 'Standard_D2s_v3'
+  azure_resource_group_prefix: 'ga-pdsoe-'
+  resource_group_tags: <%= ENV["AZURE_TAGS"] %>
+
+provisioner:
+  name: chef_infra
+  always_update_cookbooks: true
+  product_name: chef
+  product_version: 18
+  channel: stable
+  max_retries: 3
+  wait_for_retry: 90
+  retry_on_exit_code: [35, 213]
+
+verifier:
+  name: inspec
+
+platforms:
+
+- name: windows-10
+  os_type: windows
+  transport:
+    name: winrm
+  driver:
+    image_urn: MicrosoftWindowsDesktop:Windows-10:win10-21h2-ent:latest
+    winrm_powershell_script: |-
+      winrm quickconfig -q
+      Set-NetFirewallRule -Name "WINRM-HTTP-In-TCP" -RemoteAddress Any -Enabled True
+
+- name: windows-11
+  os_type: windows
+  transport:
+    name: winrm
+  driver:
+    image_urn: MicrosoftWindowsDesktop:Windows-11:win11-21h2-ent:latest
+    winrm_powershell_script: |-
+      winrm quickconfig -q
+      Set-NetFirewallRule -Name "WINRM-HTTP-In-TCP" -RemoteAddress Any -Enabled True
+
+suites:
+  - name: default
+    run_list:
+    - recipe[pdsoe::default]
+    verifier:
+      inspec_tests:
+        - compliance/profiles/pdsoe
+    attributes:
+      audit:
+        reporter: 'cli'
+        compliance_phase: true
